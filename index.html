@@ -5,8 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
+    <link rel="stylesheet" href="assets/css/quiz.css"></link>
 </head>
 <body>
+    <div class="container">
+        <h1 class="pageTitle">Code Quiz</h1>
+        <div id='question-container'>
+            <div id='question'><h2>Questions</h2></div>
+            <div id="answer-buttons" class='btn-layout'>
+                <ol class='btn-layout'>
+                <button class="button"><li>Answer</li></button>
+                <button class="button"><li>Answer</li></button>
+                <button class="button"><li>Answer</li></button>
+                <button class="button"><li>Answer</li></button>
+                </ol>
+            </div>
+        </div>
+            <button id="button">Start Quiz</button>
+        <h2 id="countdown"></h2>
+      </div>  
     <script src="assets/js/quiz.js"></script>
 </body>
 </html>
