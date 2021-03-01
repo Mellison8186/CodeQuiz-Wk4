@@ -3,9 +3,9 @@ var timerEl = document.getElementById('countdown');
 var button = document.getElementById('button');
 var score = 0;
 var quiz = document.getElementById('quiz');
-var timeLeft = 30;
+var timeLeft = 60;
 var question = 0;
-// var message = 'Your score is';
+var initialsInput = document.querySelector('#initials')
 
 var h3ScoreEl = document.createElement('h3Score');
 h3ScoreEl.textContent = 'View High Scores';
@@ -93,8 +93,6 @@ function showQuestion(currentQuestion) {
     var question = document.getElementById('question')
     question.textContent = questions[currentQuestion].q;
 
-console.log(currentQuestion)
-
     answer1.textContent = questions[currentQuestion].a[0].text;
     answer1.value = questions[currentQuestion].a[0].correct;
     answer2.textContent = questions[currentQuestion].a[1].text;
@@ -112,10 +110,16 @@ console.log(currentQuestion)
 
 function checkAnswer(event) {
 if (event.target.value === 'true') {
-    question ++;
+    question++ && score++;
     return showQuestion(question)
 }
 else {
     return timeLeft -= 5;
 }
+}
+
+save.addEventListener('click',storeInitials)
+// Ask for initials and show final score
+function storeInitials(event) {
+    var initials = localStorage.getItem('initials');
 }
