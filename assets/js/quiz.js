@@ -1,56 +1,16 @@
 var body = document.body;
 var timerEl = document.getElementById('countdown');
-var mainEl = document.getElementById('main');
 var button = document.getElementById('button');
-var questionEl = document.getElementById('question')
-var answerBtnsEl = document.getElementById('answerBtns')
+var score = 0;
+var quiz = document.getElementById('quiz');
+var timeLeft = 30;
+var question = 0;
 // var message = 'Your score is';
 
 var h3ScoreEl = document.createElement('h3Score');
 h3ScoreEl.textContent = 'View High Scores';
 h3ScoreEl.setAttribute('style', 'margin:auto; width:75%; text-align:left;');
 body.appendChild(h3ScoreEl);
-
-// Start quiz button and start and countdown functions
-button.addEventListener('click', startQuiz)
-button.addEventListener('click', countdown)
-
-function startQuiz() {
-    button.classList.add('hide')
-    showQuestions()
-}
-
-function showQuestions(questions) {
-    questionEl.innerText = questions.questions
-}
-
-// Timer that counts down from 60 seconds
-function countdown() {
-    var timeLeft = 5;
-
-  // executed every 1000 milliseconds
-  var timeInterval = setInterval(function() {
-    // If statement for timer with greater than 1 sec remaining
-    if (timeLeft > 1) {
-      timerEl.textContent = timeLeft + ' seconds remaining';
-      timeLeft--;
-    } else if (timeLeft === 1) {
-      timerEl.textContent = timeLeft + ' second remaining';
-      timeLeft--;
-    } else {
-      timerEl.textContent = 'Time is up!';
-      // Use `clearInterval()` to stop the timer
-      clearInterval(timeInterval);
-      // Call the `displayMessage()` function
-      displayMessage();
-    }
-  }, 1000);
-}
-
-// Select answer function
-function answer() {
-
-}
 
 // The array of questions for the game.
 var questions = [
@@ -99,3 +59,63 @@ var questions = [
     ]
     },
 ]
+
+// Start quiz button and start and countdown functions
+button.addEventListener('click', startQuiz)
+
+function startQuiz() {
+    // executed every 1000 milliseconds
+    var timeInterval = setInterval(function() {
+      // If statement for timer with greater than 1 sec remaining
+      if (timeLeft > 1) {
+        timerEl.textContent = timeLeft + ' seconds remaining';
+        timeLeft--;
+      } else if (timeLeft === 1) {
+        timerEl.textContent = timeLeft + ' second remaining';
+        timeLeft--;
+      } else {
+        timerEl.textContent = 'Time is up!';
+        // Use `clearInterval()` to stop the timer
+        clearInterval(timeInterval);
+      }
+    }, 1000);
+    button.remove()
+    quiz.style.display = 'block'
+    showQuestion(question)
+}
+
+function showQuestion(currentQuestion) {
+    var answer1 = document.getElementById('answer1');
+    var answer2 = document.getElementById('answer2');
+    var answer3 = document.getElementById('answer3');
+    var answer4 = document.getElementById('answer4');
+
+    var question = document.getElementById('question')
+    question.textContent = questions[currentQuestion].q;
+
+console.log(currentQuestion)
+
+    answer1.textContent = questions[currentQuestion].a[0].text;
+    answer1.value = questions[currentQuestion].a[0].correct;
+    answer2.textContent = questions[currentQuestion].a[1].text;
+    answer2.value = questions[currentQuestion].a[1].correct;    
+    answer3.textContent = questions[currentQuestion].a[2].text;
+    answer3.value = questions[currentQuestion].a[2].correct;    
+    answer4.textContent = questions[currentQuestion].a[3].text;
+    answer4.value = questions[currentQuestion].a[3].correct;
+
+    answer1.addEventListener('click',checkAnswer)
+    answer2.addEventListener('click',checkAnswer)
+    answer3.addEventListener('click',checkAnswer)
+    answer4.addEventListener('click',checkAnswer)
+}
+
+function checkAnswer(event) {
+if (event.target.value === 'true') {
+    question ++;
+    return showQuestion(question)
+}
+else {
+    return timeLeft -= 5;
+}
+}
