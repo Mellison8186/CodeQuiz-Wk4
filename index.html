@@ -19,18 +19,32 @@
                     <button id="answer3"></button>
                     <button id="answer4"></button>
                 </ol>
-                <form method='POST'>
-                    <div class='input-group'>
-                    <label for='initials'>Initials</label>
-                    <input type='text' name='initials' id='initials' placeholder="Enter Initials">
-                    <button id='save'>Save</button>
-                    </div>
-                </form>
             </div>
             <h2 id="countdown"></h2>
         </div>
             <button id="button">Start Quiz</button>
       </div>  
+
+      <div class="high-scores hide">
+      <header class="hero">
+        <h1 class="app-title">High Scores</h1>
+      </header>
+      <main>
+      <div id="high-scores-container" class="list-group">
+        <form method='POST'>
+            <div class='input-group'>
+            <label for='initials'>Initials</label>
+            <input type='text' name='initials' id='initials' placeholder="Enter Initials">
+            <button id='save'>Save</button>
+            </div>
+        </form>
+        <div>
+            <ul id="scoreTable"></ul>
+        </div>
+      </div>
+      </main>
+    </div>
+
     <script src="assets/js/quiz.js"></script>
 </body>
 </html>

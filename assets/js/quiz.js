@@ -77,6 +77,7 @@ function startQuiz() {
         timerEl.textContent = 'Time is up!';
         // Use `clearInterval()` to stop the timer
         clearInterval(timeInterval);
+        showHighScores()
       }
     }, 1000);
     button.remove()
@@ -110,7 +111,8 @@ function showQuestion(currentQuestion) {
 
 function checkAnswer(event) {
 if (event.target.value === 'true') {
-    question++ && score++;
+    question++  
+    score++;
     return showQuestion(question)
 }
 else {
@@ -118,8 +120,24 @@ else {
 }
 }
 
+function showHighScores() {
+    document.querySelector(".high-scores").classList.remove("hide");
+    document.querySelector(".container").classList.add("hide");
+}
+
 save.addEventListener('click',storeInitials)
 // Ask for initials and show final score
 function storeInitials(event) {
-    var initials = localStorage.getItem('initials');
+    event.preventDefault();
+    var initials = document.querySelector("#initials").value
+    console.log(score)
+    localStorage.setItem('initials',JSON.stringify([initials, score]))
 }
+
+function getScores() {
+    var ul = document.querySelector("#scoreTable");
+   var data = JSON.parse(localStorage.getItem('initials'))
+   ul.innerHTML+="<li>"+data[0]+data[1]+"</li>"
+}
+
+getScores()
