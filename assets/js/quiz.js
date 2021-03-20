@@ -7,10 +7,18 @@ var timeLeft = 60;
 var question = 0;
 var initialsInput = document.querySelector('#initials')
 
-var h3ScoreEl = document.createElement('h3Score');
-h3ScoreEl.textContent = 'View High Scores';
-h3ScoreEl.setAttribute('style', 'margin:auto; width:75%; text-align:left;');
-body.appendChild(h3ScoreEl);
+// // Link to view high scores
+// var h3ScoreEl = document.createElement('h3Score');
+// h3ScoreEl.className = "h3Score";
+// h3ScoreEl.textContent = 'View High Scores';
+// h3ScoreEl.setAttribute('style', 'margin:auto; width:75%;');
+// body.appendChild(h3ScoreEl);
+
+// document.getElementsByClassName("h3Score").onclick = function() {getScores()};
+
+function displayDate() {
+  document.getElementById("demo").innerHTML = Date();
+}
 
 // The array of questions for the game.
 var questions = [
@@ -109,6 +117,7 @@ function showQuestion(currentQuestion) {
     answer4.addEventListener('click',checkAnswer)
 }
 
+// Function to check if answer is correct and decrement time if incorrect
 function checkAnswer(event) {
 if (event.target.value === 'true') {
     question++  
@@ -120,23 +129,25 @@ else {
 }
 }
 
+// Function to show high scores and hide questions
 function showHighScores() {
     document.querySelector(".high-scores").classList.remove("hide");
     document.querySelector(".container").classList.add("hide");
 }
 
+// Event to save initials in local storage
 save.addEventListener('click',storeInitials)
 // Ask for initials and show final score
 function storeInitials(event) {
     event.preventDefault();
     var initials = document.querySelector("#initials").value
-    console.log(score)
-    localStorage.setItem('initials',JSON.stringify([initials, score]))
+    localStorage.setItem('initials',JSON.stringify([initials, score]));
 }
 
+// Function to get high scores and initials from local storage
 function getScores() {
     var ul = document.querySelector("#scoreTable");
-   var data = JSON.parse(localStorage.getItem('initials'))
+   var data = JSON.parse(localStorage.getItem('initials'));
    ul.innerHTML+="<li>"+data[0]+data[1]+"</li>"
 }
 

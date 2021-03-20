@@ -9,6 +9,23 @@
     margin-bottom: 20px;
   }
 
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 10px;
+    padding: 10px;
+    align-items: center;
+  }
+
+  .text {
+    margin-left: 20%;
+    font-weight: bold;
+  }
+
+  .row {
+    align-items: center;
+  }
+
   button {
     background-color: blueviolet;
     border-radius: 8px;
@@ -17,13 +34,14 @@
     font-size: 20px;
     letter-spacing: 0.21px;
     line-height: 16px;
-    max-width: 255px;
+    max-width: 150px;
     padding: 10px 25px;
     text-align: center;
     transition-duration: 0.15s;
     transition-property: background-color;
     transition-timing-function: linear;
     margin-top: 0.6em;
+    margin-left: 25%;
     float: center;
   }
 
