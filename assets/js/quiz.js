@@ -5,20 +5,7 @@ var score = 0;
 var quiz = document.getElementById('quiz');
 var timeLeft = 60;
 var question = 0;
-var initialsInput = document.querySelector('#initials')
-
-// // Link to view high scores
-// var h3ScoreEl = document.createElement('h3Score');
-// h3ScoreEl.className = "h3Score";
-// h3ScoreEl.textContent = 'View High Scores';
-// h3ScoreEl.setAttribute('style', 'margin:auto; width:75%;');
-// body.appendChild(h3ScoreEl);
-
-// document.getElementsByClassName("h3Score").onclick = function() {getScores()};
-
-function displayDate() {
-  document.getElementById("demo").innerHTML = Date();
-}
+var initialsInput = document.querySelector('#initials');
 
 // The array of questions for the game.
 var questions = [
@@ -91,7 +78,7 @@ function startQuiz() {
     button.remove()
     quiz.style.display = 'block'
     showQuestion(question)
-}
+};
 
 function showQuestion(currentQuestion) {
     var answer1 = document.getElementById('answer1');
@@ -99,7 +86,7 @@ function showQuestion(currentQuestion) {
     var answer3 = document.getElementById('answer3');
     var answer4 = document.getElementById('answer4');
 
-    var question = document.getElementById('question')
+    var question = document.getElementById('question');
     question.textContent = questions[currentQuestion].q;
 
     answer1.textContent = questions[currentQuestion].a[0].text;
@@ -115,7 +102,7 @@ function showQuestion(currentQuestion) {
     answer2.addEventListener('click',checkAnswer)
     answer3.addEventListener('click',checkAnswer)
     answer4.addEventListener('click',checkAnswer)
-}
+};
 
 // Function to check if answer is correct and decrement time if incorrect
 function checkAnswer(event) {
@@ -127,7 +114,7 @@ if (event.target.value === 'true') {
 else {
     return timeLeft -= 5;
 }
-}
+};
 
 // Function to show high scores and hide questions
 function showHighScores() {
@@ -137,6 +124,7 @@ function showHighScores() {
 
 // Event to save initials in local storage
 save.addEventListener('click',storeInitials)
+
 // Ask for initials and show final score
 function storeInitials(event) {
     event.preventDefault();
@@ -147,8 +135,8 @@ function storeInitials(event) {
 // Function to get high scores and initials from local storage
 function getScores() {
     var ul = document.querySelector("#scoreTable");
-   var data = JSON.parse(localStorage.getItem('initials'));
-   ul.innerHTML+="<li>"+data[0]+data[1]+"</li>"
+    var data = JSON.parse(localStorage.getItem('initials'));
+    ul.innerHTML+="<li>"+data[0]+data[1]+"</li>";
 }
 
 getScores()
