@@ -7,45 +7,62 @@
     <title>Code Quiz</title>
     <link rel="stylesheet" href="assets/css/quiz.css"></link>
 </head>
+
+<!-- Code Quiz View -->
 <body>
     <div class="container">
         <h1 class="pageTitle">Code Quiz</h1>
-        <div id="quiz">
-            <div id='question'><h2>Questions</h2></div>
-            <div id="answer-buttons" class='btn-layout'>
-                <ol class='btn-layout'>
-                    <button id="answer1"></button>
-                    <button id="answer2"></button>
-                    <button id="answer3"></button>
-                    <button id="answer4"></button>
-                </ol>
-            </div>
-            <h2 id="countdown"></h2>
-        </div>
-        <div class="grid-container row">
+        <div class="grid-container">
         <div id="scoresLink" class="text">View High Scores</div>
             <button id="button">Start Quiz</button>
+            <div id="quiz">
+                <div id='question'><h2>Questions</h2></div>
+                <div id="answer-buttons" class='btn-layout'>
+                    <ol class='btn-layout'>
+                        <button id="answer1"></button>
+                        <button id="answer2"></button>
+                        <button id="answer3"></button>
+                        <button id="answer4"></button>
+                    </ol>
+                </div>
+                <h2 id="countdown"></h2>
+            </div>
         </div>
       </div>  
 
-      <div class="high-scores hide">
+      <!-- High Scores Form-->
+    <div class="initials-input hide">
       <header class="hero">
-        <h1 class="app-title">High Scores</h1>
+        <h1 class="pageTitle">Enter Your Initials</h1>
       </header>
-      <main>
-      <div id="high-scores-container" class="list-group">
+      <div id="initials-container" class="grid-container">
+          <div></div>
         <form method='POST'>
             <div class='input-group'>
             <label for='initials'>Initials</label>
             <input type='text' name='initials' id='initials' placeholder="Enter Initials">
             <button id='save'>Save</button>
+            <div>
+                <h2 id="timer"></h2>
+            </div>
             </div>
         </form>
-        <div>
-            <ul id="scoreTable"></ul>
-        </div>
       </div>
-      </main>
+    </div>
+
+
+      <!-- High Scores List-->
+      <div class="high-scores hide" id="high-scores">
+        <header class="hero">
+          <h1 class="scoresTitle">High Scores</h1>
+            </header>
+            <div id="highScores" class="grid-container"></div>
+          <div>
+          <h2 id="high-scores-list"></h2>
+            </div>
+              <ul id="scoreTable"></ul>
+          </div>
+        </div>
     </div>
 
     <script src="assets/js/quiz.js"></script>

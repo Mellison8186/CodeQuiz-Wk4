@@ -1,11 +1,15 @@
 var body = document.body;
-var timerEl = document.getElementById('countdown');
-var button = document.getElementById('button');
 var score = 0;
-var quiz = document.getElementById('quiz');
 var timeLeft = 60;
 var question = 0;
+var timerEl = document.getElementById('countdown');
+var button = document.getElementById('button');
+var quiz = document.getElementById('quiz');
+var save = document.getElementById('save');
+var timeUp = document.getElementById('timer')
+var scoreList = document.getElementById('high-scores-list');
 var initialsInput = document.querySelector('#initials');
+
 
 // The array of questions for the game.
 var questions = [
@@ -55,7 +59,7 @@ var questions = [
     },
 ]
 
-// Start quiz button and start and countdown functions
+// Start quiz button and start/countdown functions
 button.addEventListener('click', startQuiz)
 
 function startQuiz() {
@@ -69,10 +73,11 @@ function startQuiz() {
         timerEl.textContent = timeLeft + ' second remaining';
         timeLeft--;
       } else {
-        timerEl.textContent = 'Time is up!';
+          (timeLeft <= 0)
         // Use `clearInterval()` to stop the timer
         clearInterval(timeInterval);
-        showHighScores()
+        inputInitials()
+        timer.textContent = 'Time is up!';
       }
     }, 1000);
     button.remove()
@@ -104,7 +109,7 @@ function showQuestion(currentQuestion) {
     answer4.addEventListener('click',checkAnswer)
 };
 
-// Function to check if answer is correct and decrement time if incorrect
+// Function to check answer and decrement time if incorrect
 function checkAnswer(event) {
 if (event.target.value === 'true') {
     question++  
@@ -116,9 +121,9 @@ else {
 }
 };
 
-// Function to show high scores and hide questions
-function showHighScores() {
-    document.querySelector(".high-scores").classList.remove("hide");
+// Function to show initials input and hide questions
+function inputInitials() {
+    document.querySelector(".initials-input").classList.remove("hide");
     document.querySelector(".container").classList.add("hide");
 }
 
@@ -130,13 +135,22 @@ function storeInitials(event) {
     event.preventDefault();
     var initials = document.querySelector("#initials").value
     localStorage.setItem('initials',JSON.stringify([initials, score]));
+    {
+        getScores();
+    }
 }
 
 // Function to get high scores and initials from local storage
 function getScores() {
+    document.querySelector(".initials-input").classList.add("hide");
+    document.querySelector("#high-scores").classList.remove("hide");
+    document.querySelector(".highScores").classList.add("hide");{
+    document.getElementById("scoresLink").onclick = function()
+    {
     var ul = document.querySelector("#scoreTable");
     var data = JSON.parse(localStorage.getItem('initials'));
-    ul.innerHTML+="<li>"+data[0]+data[1]+"</li>";
-}
-
-getScores()
+    ul.innerHTML+="<li>"+data[0]+data[1]+"</li>"}; 
+    {
+    getScores()
+    }
+}};
