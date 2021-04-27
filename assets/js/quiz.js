@@ -134,23 +134,24 @@ save.addEventListener('click',storeInitials)
 function storeInitials(event) {
     event.preventDefault();
     var initials = document.querySelector("#initials").value
-    localStorage.setItem('initials',JSON.stringify([initials, score]));
-    {
-        getScores();
-    }
+    var data = JSON.parse(localStorage.getItem('initials')) || [];
+    data.push([initials, score]);
+    localStorage.setItem('initials',JSON.stringify(data));
+    getScores()
 }
 
 // Function to get high scores and initials from local storage
 function getScores() {
     document.querySelector(".initials-input").classList.add("hide");
     document.querySelector("#high-scores").classList.remove("hide");
-    document.querySelector(".highScores").classList.add("hide");{
-    document.getElementById("scoresLink").onclick = function()
-    {
     var ul = document.querySelector("#scoreTable");
-    var data = JSON.parse(localStorage.getItem('initials'));
-    ul.innerHTML+="<li>"+data[0]+data[1]+"</li>"}; 
-    {
-    getScores()
+    var data = JSON.parse(localStorage.getItem('initials')) || [];
+
+    for (let index = 0; index < data.length; index++) {
+    const element = data[index];
+    ul.innerHTML += "<li>" + element[0] + ' ' + element[1] + "</li>"
     }
-}};
+};
+    document.getElementById("scoresLink").onclick = function() { 
+        getScores();
+};
